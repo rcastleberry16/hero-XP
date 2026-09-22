@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)file:///C:/Users/rcastleberry/Downloads/Daily_Hero_XP_Button_App.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Daily Hero XP</title>
+<style>
+:root{--bg:#f5efe2;--card:#fffaf0;--ink:#2e241b;--gold:#c8952e;--purple:#65478d;--red:#9d3d36;--green:#47744c}
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:#35271d;color:white;padding:14px 16px;box-shadow:0 2px 8px #0003}
+h1{font-size:22px;margin:0}.sub{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.badge{background:var(--gold);color:#24190f;border-radius:999px;padding:7px 12px;font-weight:800}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+button{border:0;border-radius:12px;padding:11px 12px;font-weight:800;font-size:14px;cursor:pointer;touch-action:manipulation}
+.toolbar button{background:#eee;color:#222}.danger{background:#f1d4d1!important;color:#6e211c!important}
+main{padding:14px;max-width:1400px;margin:auto}
+.note{background:#fff3c8;border:1px solid #e4c86a;padding:10px 12px;border-radius:12px;margin-bottom:12px}
+.student{display:grid;grid-template-columns:160px repeat(6,minmax(110px,1fr)) 95px;gap:7px;align-items:center;background:var(--card);border:1px solid #ddcfb9;border-radius:15px;padding:9px;margin-bottom:9px;box-shadow:0 1px 3px #0001}
+.name{font-size:18px;font-weight:900}.xp{font-size:20px;font-weight:900;text-align:center;color:var(--purple)}
+.add{background:#e9dfef;color:#3c2857;min-height:54px}.add:active{transform:scale(.97);background:#d5c2e1}
+.add small{display:block;font-size:11px;font-weight:700;margin-top:2px}
+@media(max-width:1000px){
+.student{grid-template-columns:1fr 90px}.name{grid-column:1}.xp{grid-column:2;grid-row:1}
+.add{grid-column:span 1}.student .add:nth-of-type(odd){grid-column:1}.student .add:nth-of-type(even){grid-column:2}
+}
+@media(max-width:600px){main{padding:8px}.student{grid-template-columns:1fr 1fr}.name{grid-column:1}.xp{grid-column:2}.add{font-size:13px;padding:9px 5px}.toolbar{margin-left:0}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🏛️ Daily Hero XP</h1>
+  <div class="sub">
+    <span class="badge">Class Total: <span id="classTotal">0</span> XP</span>
+    <span class="badge">Today: <span id="today">9/22/2026</span></span>
+    <div class="toolbar">
+      <button onclick="undo()">↶ Undo Last</button>
+      <button onclick="exportCSV()">Export Day</button>
+      <button class="danger" onclick="resetDay()">Reset Day</button>
+    </div>
+  </div>
+</header>
+<main>
+<div class="note">Tap a button to award XP. Totals are saved automatically on this device. Tap repeatedly if a student earns the same award more than once.</div>
+<div id="students"><div class="student"><div class="name">Olga</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">DJ</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Matteo</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Genesis</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Ali</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Yaretzi</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Marlee</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Felix</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Yamileth</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Tamsin</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Keywine</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Amodd</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Zah’Khyra</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Jakale</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Dali</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Nelson</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Harleen</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Cameron</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Jazden</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Jesus</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Jesse</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Emery</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Khuong</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div><div class="student"><div class="name">Z’Cari</div><button class="add">On Time <b>+5</b><small>Tap to award</small></button><button class="add">Participating <b>+2</b><small>Tap to award</small></button><button class="add">CHAMPS <b>+3</b><small>Tap to award</small></button><button class="add">Work Complete <b>+5</b><small>Tap to award</small></button><button class="add">Gold Coin <b>+10</b><small>Tap to award</small></button><button class="add">Caught in Your Seat <b>+10</b><small>Tap to award</small></button><div class="xp">0 XP</div></div></div>
+</main>
+<script>
+const names=["Olga","DJ","Matteo","Genesis","Ali","Yaretzi","Marlee","Felix","Yamileth","Tamsin","Keywine","Amodd","Zah’Khyra","Jakale","Dali","Nelson","Harleen","Cameron","Jazden","Jesus","Jesse","Emery","Khuong","Z’Cari"];
+const awards=[
+ ["On Time",5],["Participating",2],["CHAMPS",3],["Work Complete",5],["Gold Coin",10],["Caught in Your Seat",10]
+];
+const day=new Date().toLocaleDateString();
+document.getElementById("today").textContent=day;
+const key="heroXP-"+new Date().toISOString().slice(0,10);
+let state=JSON.parse(localStorage.getItem(key)||"null")||Object.fromEntries(names.map(n=>[n,{total:0,counts:Array(6).fill(0)}]));
+let history=[];
+function save(){localStorage.setItem(key,JSON.stringify(state))}
+function render(){
+ const box=document.getElementById("students"); box.innerHTML="";
+ let ct=0;
+ names.forEach(n=>{
+   if(!state[n]) state[n]={total:0,counts:Array(6).fill(0)};
+   ct+=state[n].total;
+   const row=document.createElement("div"); row.className="student";
+   const nm=document.createElement("div"); nm.className="name"; nm.textContent=n; row.appendChild(nm);
+   awards.forEach((a,i)=>{
+     const b=document.createElement("button"); b.className="add";
+     b.innerHTML=`${a[0]} <b>+${a[1]}</b><small>${state[n].counts[i] ? "Earned × "+state[n].counts[i] : "Tap to award"}</small>`;
+     b.onclick=()=>award(n,i); row.appendChild(b);
+   });
+   const xp=document.createElement("div"); xp.className="xp"; xp.textContent=state[n].total+" XP"; row.appendChild(xp);
+   box.appendChild(row);
+ });
+ document.getElementById("classTotal").textContent=ct; save();
+}
+function award(n,i){
+ state[n].total+=awards[i][1]; state[n].counts[i]++; history.push([n,i]); render();
+ if(navigator.vibrate) navigator.vibrate(30);
+}
+function undo(){
+ const x=history.pop(); if(!x){alert("Nothing to undo yet.");return}
+ const [n,i]=x; state[n].total=Math.max(0,state[n].total-awards[i][1]); state[n].counts[i]=Math.max(0,state[n].counts[i]-1); render();
+}
+function resetDay(){
+ if(confirm("Reset ALL XP for today? This cannot be undone.")){
+   state=Object.fromEntries(names.map(n=>[n,{total:0,counts:Array(6).fill(0)}])); history=[]; render();
+ }
+}
+function exportCSV(){
+ let rows=[["Date","Student",...awards.map(a=>a[0]),"Daily Total"]];
+ names.forEach(n=>rows.push([day,n,...state[n].counts,state[n].total]));
+ const csv=rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n");
+ const blob=new Blob([csv],{type:"text/csv"}); const url=URL.createObjectURL(blob);
+ const a=document.createElement("a"); a.href=url; a.download="Hero_XP_"+new Date().toISOString().slice(0,10)+".csv"; a.click(); URL.revokeObjectURL(url);
+}
+render();
+</script>
+</body></html>
