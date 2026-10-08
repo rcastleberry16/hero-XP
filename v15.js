@@ -1,0 +1,20 @@
+(()=>{'use strict';
+const bridge=window.v11bridge;if(!bridge)return;
+const today=()=>new Date().toLocaleDateString('en-CA');
+const absent=i=>(bridge.get().v12?.attendance?.[today()]||{})[i]==='absent';
+const purge=()=>{let n=0;for(const i of [...selected])if(absent(i)){selected.delete(i);n++}return n};
+const baseRender=render;
+render=function(){purge();baseRender();document.querySelectorAll('#grid .card').forEach((card,i)=>{if(absent(i)){card.classList.add('is-absent');card.setAttribute('aria-disabled','true');card.title='Absent today — rewards disabled';}})};
+const baseSelect=select;
+select=function(i){if(absent(i))return toast(students[i].name+' is absent today — rewards disabled.');return baseSelect(i)};
+selectAll=function(){selected=new Set(students.map((_,i)=>i).filter(i=>!absent(i)));render();toast(selected.size+' available heroes selected.')};
+function guard(fn,label){return function(...args){const blocked=purge();if(blocked){render();toast(blocked+' absent heroes excluded from '+label)}if(!selected.size)return toast('No eligible heroes selected.');return fn.apply(this,args)}}
+award=guard(award,'XP');participationAward=guard(participationAward,'participation');giveDollars=guard(giveDollars,'Hero Dollars');heroMoment=guard(heroMoment,'Hero Moment');custom=guard(custom,'custom XP');
+const oldRandom=randomHero;
+randomHero=function(){const eligible=students.map((_,i)=>i).filter(i=>!absent(i));if(!eligible.length)return toast('No available students today.');const i=eligible[Math.floor(Math.random()*eligible.length)];selected=new Set([i]);render();celebrate(students[i].name,'🎲 THE FATES HAVE CHOSEN!','Your hero has been selected.')};
+const attendanceSave=window.v12AttendanceSave;
+if(attendanceSave)window.v12AttendanceSave=function(...args){const r=attendanceSave.apply(this,args);purge();render();return r};
+const preset=window.v14AwardPreset;
+if(preset)window.v14AwardPreset=function(...args){purge();if(!selected.size)return toast('No eligible heroes selected.');return preset.apply(this,args)};
+render();
+})();
