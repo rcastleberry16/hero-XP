@@ -2,6 +2,13 @@
 const bridge=window.v11bridge;
 const today=()=>new Date().toLocaleDateString('en-CA');
 function isAbsent(i){const a=bridge?.get()?.v12?.attendance?.[today()]||{};return a[i]==='absent'}
+function playFineSound(){
+ if(typeof soundOn!=='undefined' && !soundOn)return;
+ if(typeof tone!=='function')return;
+ // Distinct low, descending two-note warning. Honors the existing sound toggle.
+ tone(330,.20,'sawtooth',.075,0);
+ tone(220,.32,'sawtooth',.065,.18);
+}
 window.v22Fine=function(reason,amount){
  if(!bridge)return toast('Reward history is unavailable; fine not applied.');
  if(![['Talking',2],['Work Not Complete',3],['Disrespect',5]].some(([r,n])=>r===reason&&n===amount))return;
@@ -23,7 +30,7 @@ window.v22Fine=function(reason,amount){
  for(const x of details){if(x.deduct>0)extra.history.unshift({date:stamp,type:'Fine: '+reason,students:[x.name],xp:0,hd:-x.deduct,note:'Hero Dollars only; original balance $'+x.balance});}
  extra.history=extra.history.slice(0,1000);
  save();bridge.persist();selected.clear();render();
- if(typeof playCoinSound==='function')playCoinSound();
+ playFineSound();
  toast('⚖️ '+reason+': $'+total+' deducted from '+details.filter(x=>x.deduct>0).length+' hero(es).');
 };
 })();

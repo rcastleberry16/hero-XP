@@ -19,3 +19,10 @@ In the **Hero Dollars** tab, use one of three fine buttons:
 
 ## Data compatibility and privacy
 The existing `heroXPv8` student data and `heroXPv11Extras` history are reused. No migration or reset of student XP, Hero Dollars, game progress, missions, equipment, collectibles, or cloud configuration is intended. Browser storage is local to the website origin. Cloud synchronization requires separately configured Supabase authentication. GitHub Pages itself does not protect teacher controls or student data; follow district policy.
+
+
+## V22.1 — Distinct Fine Sound
+- Fines now play a **low descending two-note warning** rather than the positive Hero Dollar coin sound.
+- The sound respects the existing **Sound On/Off** toggle and only plays after a fine is confirmed and actually deducted.
+- XP, Hero Dollars, reward history, absence protection, and all other functionality are unchanged.
+- Update an existing V22 GitHub site by replacing only `v22.js` (no new script file is required). Back up student data before deploying.
